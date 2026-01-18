@@ -59,6 +59,7 @@
     <Compile Include="Assets\EnemyBullet.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\Player.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\Wave.cs" />
+    <Compile Include="Assets\PlayerBullet.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\LevelController.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\VisualEffect.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\Boundary.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Assets\ShowLog.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\PlayerShooting.cs" />
     <Compile Include="Assets\Blinking.cs" />
+    <Compile Include="Assets\Explosion.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\Enemy.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -29,11 +29,16 @@ public class EnemyMovement : MonoBehaviour
     // ================= SHOOTING =================
     [Header("=== ENEMY SHOOTING ===")]
     public GameObject enemyBulletPrefab;
-    public float shootInterval = 2f;
+    public float shootInterval = 0.5f;
+
+    [Header("=== BURST SHOOTING ===")]
+    public int burstCount = 5;          // số viên mỗi loạt
+    public float burstDelay = 0.12f;    // khoảng cách giữa các viên
 
     // ================= PRIVATE =================
     private Vector2 moveDir;
     private float dirTimer;
+    private float shootTimer;
     private Transform player;
 
     // ================= UNITY =================
@@ -47,9 +52,6 @@ public class EnemyMovement : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
             PickRandomDirection();
-
-            if (enemyBulletPrefab != null)
-                InvokeRepeating(nameof(ShootAtPlayer), 1f, shootInterval);
         }
     }
 
@@ -59,6 +61,7 @@ public class EnemyMovement : MonoBehaviour
 
         MoveEnemy();
         ChangeDirectionOverTime();
+        HandleShooting();
         DestroyIfOutOfBounds();
     }
 
@@ -141,6 +144,41 @@ public class EnemyMovement : MonoBehaviour
         moveDir = new Vector2(x, y).normalized;
     }
 
+    // ================= SHOOTING =================
+    void HandleShooting()
+    {
+        if (enemyBulletPrefab == null || player == null) return;
+
+        shootTimer += Time.deltaTime;
+
+        if (shootTimer >= shootInterval)
+        {
+            shootTimer = 0f;
+            StartCoroutine(BurstShoot());
+        }
+    }
+
+
+    void ShootAtPlayer()
+    {
+        if (enemyBulletPrefab == null || player == null) return;
+
+        Vector2 dir = (player.position - transform.position).normalized;
+
+        GameObject bullet = Instantiate(
+            enemyBulletPrefab,
+            transform.position,
+            Quaternion.identity
+        );
+
+        EnemyBullet eb = bullet.GetComponent<EnemyBullet>();
+        if (eb != null)
+        {
+            eb.SetDirection(dir);
+        }
+    }
+
+    // ================= CLEANUP =================
     void DestroyIfOutOfBounds()
     {
         if (transform.position.y > yLimit + spawnOffset ||
@@ -151,15 +189,13 @@ public class EnemyMovement : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    // ================= SHOOTING =================
-    void ShootAtPlayer()
+    System.Collections.IEnumerator BurstShoot()
+{
+    for (int i = 0; i < burstCount; i++)
     {
-        if (enemyBulletPrefab == null || player == null) return;
-
-        Vector3 dir = (player.position - transform.position).normalized;
-        Quaternion rot = Quaternion.LookRotation(Vector3.forward, dir);
-
-        Instantiate(enemyBulletPrefab, transform.position, rot);
+        ShootAtPlayer();
+        yield return new WaitForSeconds(burstDelay);
     }
+}
+
 }
