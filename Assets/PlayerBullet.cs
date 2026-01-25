@@ -35,3 +35,4 @@ public class PlayerBullet : MonoBehaviour
         }
     }
 }
+// k can them 
