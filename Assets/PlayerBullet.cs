@@ -21,16 +21,10 @@ public class PlayerBullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            if (explosionPrefab != null)
-            {
-                Instantiate(
-                    explosionPrefab,
-                    other.transform.position,
-                    Quaternion.identity
-                );
-            }
+            Health h = other.GetComponent<Health>();
+            if (h != null)
+                h.TakeDamage(20);
 
-            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }

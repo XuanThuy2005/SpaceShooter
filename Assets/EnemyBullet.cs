@@ -2,23 +2,28 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    public float speed = 5f;
-    public float lifeTime = 5f;
-
-    private Vector2 moveDir;
+    public float speed = 8f;
+    Vector2 direction;
 
     public void SetDirection(Vector2 dir)
     {
-        moveDir = dir.normalized;
-    }
-
-    void Start()
-    {
-        Destroy(gameObject, lifeTime);
+        direction = dir.normalized;
     }
 
     void Update()
     {
-        transform.Translate(moveDir * speed * Time.deltaTime);
+        transform.Translate(direction * speed * Time.deltaTime);
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Player"))
+    {
+        Health h = other.GetComponent<Health>();
+        if (h != null)
+            h.TakeDamage(20);
+
+        Destroy(gameObject);
+    }
+}
 }

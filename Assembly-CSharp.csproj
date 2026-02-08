@@ -48,7 +48,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.64f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Bullet.cs" />
+    <Compile Include="Assets\Space Shooter Template FREE\Scripts\PlayerHealth.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\RepeatingBackground.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\PlayerMoving.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\PoolingController.cs" />
@@ -65,11 +65,12 @@
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\Boundary.cs" />
     <Compile Include="Assets\EnemyMovement.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\Projectile.cs" />
-    <Compile Include="Assets\ShowLog.cs" />
+    <Compile Include="Assets\Space Shooter Template FREE\Scripts\EnermyAttack.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\PlayerShooting.cs" />
     <Compile Include="Assets\Blinking.cs" />
     <Compile Include="Assets\Explosion.cs" />
     <Compile Include="Assets\Space Shooter Template FREE\Scripts\Enemy.cs" />
+    <Compile Include="Assets\Space Shooter Template FREE\Scripts\Health.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
